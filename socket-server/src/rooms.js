@@ -18,6 +18,7 @@ export default class Rooms {
   }
 
   findOrCreate(roomId) {
+    console.log('roomId', roomId)
     let room = this.store.get(roomId);
     if (!room) {
       room = new Map();
