@@ -2,7 +2,7 @@ import React from 'react';
 
 import Loading from '../Loading';
 
-import './Button.css';
+import './Button.scss';
 
 const Button = ({
   loading,

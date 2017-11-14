@@ -10,7 +10,7 @@ import EditorHeader from './EditorHeader';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/base16-dark.css';
-import './Sling.css';
+import './Sling.scss';
 
 class Sling extends Component {
   state = {

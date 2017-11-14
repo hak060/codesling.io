@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Input from '../globals/forms/Input';
 import Button from '../globals/Button/';
 
-import './Auth.css';
+import './Auth.scss';
 
 class Login extends Component {
   state = {
