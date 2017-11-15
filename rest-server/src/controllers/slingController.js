@@ -38,29 +38,33 @@ export const fetchNewSlingId = async (req, res) => {
 
 export const forceNewSlingId = async (req, res) => {
   //console.log(req)
-  console.log(req + ' forceNewSlingId invoked!!!!!!!!!!!')
-  // try {
-  //   let slingId = generateSlingId();
-  //   // regenerate slingId if it already exists
-  //   while (await existsInDatabase(slingId)) {
-  //     slingId = generateSlingId();
-  //   }
-  //   // save sling in db
-  //   const newSling = new Sling({ slingId });
-  //   console.log()
-  //   await newSling.save();
-  //   log('sling successfully created');
-  //   return res.status(200).json({
-  //     success: true,
-  //     slingId,
-  //   });
-  // } catch (e) {
-  //   log('error fetching newSlingId', e);
-  //   return res.status(400).json({
-  //     success: false,
-  //     e,
-  //   });
-  // }
+  let roomExists = false;
+  console.log(req.body.roomId + ' forceNewSlingId invoked!!!!!!!!!!!');
+  try {
+
+    let slingId = req.body.roomId;
+    // regenerate slingId if it already exists
+    while (await existsInDatabase(slingId)) {
+      slingId = generateSlingId();
+      roomExists = true;
+    }
+    // save sling in db
+    const newSling = new Sling({ slingId });
+    console.log()
+    await newSling.save();
+    log('sling successfully created');
+    return res.status(200).json({
+      success: true,
+      slingId,
+      roomExists,
+    });
+  } catch (e) {
+    log('error fetching newSlingId', e);
+    return res.status(400).json({
+      success: false,
+      e,
+    });
+  }
 };
 
 export const slingFetch = async (req, res) => {

@@ -31,12 +31,14 @@ export default class LandingPage extends Component {
     let headers = {
       Authorization: `Bearer ${localStorage.token}`
     }
-    //let data = {roomId: this.state.roomId};
+    let data = {roomId: this.state.roomId};
+    let url = `${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`;
     //console.log(" this is the data in client landing ",data)
-    let that = this;
+    //let that = this;
     //axios.post(`${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`, data, headers)
 
-    axios({ method: 'POST', url: `${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`, headers: {Authorization: `Bearer ${localStorage.token}`}, data: { roomId: that.state.roomId } })
+    axios({ method: 'POST', url: url, headers: headers, data: data })
+      
 
   }
 
