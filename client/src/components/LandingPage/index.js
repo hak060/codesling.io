@@ -5,6 +5,7 @@ import debug from '../../lib/debug';
 import Button from '../globals/Button';
 import Logo from '../globals/Logo';
 import { FormGroup } from 'react-bootstrap';
+import { Checkbox } from 'react-bootstrap';
 
 import './LandingPage.scss';
 
@@ -13,6 +14,8 @@ export default class LandingPage extends Component {
     loading: false,
     slingId: '',
     roomId: '',
+    isPassword: false,
+    password: ''
   }
 //   var headers = {
 //     'Content-Type': 'application/json',
@@ -38,6 +41,14 @@ export default class LandingPage extends Component {
     //axios.post(`${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`, data, headers)
 
     axios({ method: 'POST', url: url, headers: headers, data: data })
+      .then(response => {
+        console.log('this is fetchSlingId data: ===', response.data);
+
+        const { slingId } = response.data;
+        this.props.history.push({
+          pathname: `/${slingId}`,
+        });
+      })
       
 
   }
@@ -77,6 +88,12 @@ export default class LandingPage extends Component {
     }, this.forceSlingId);
   }
 
+  handleCheckboxChange = () => {
+    this.setState(
+      { isPassword: !this.state.isPassword },
+      () => { console.log('checkbox clicked: ', this.state.isPassword) })
+  }
+
   render() {
     return (
       <div>
@@ -94,6 +111,13 @@ export default class LandingPage extends Component {
             text='enter selected room'
             onClick={this.handleStartPrivateProgrammingClick}
           />
+
+          <Checkbox onChange={this.handleCheckboxChange}>
+            Create Password
+          </Checkbox>
+          {this.state.isPassword ? 
+            <div id="password"><label> Password: <input type="text" name="password" value={this.state.password} onChange={this.handleChange} /></label></div>
+           : null}
           <br></br>
           <Button
             className="auth-btn-container"
@@ -103,7 +127,6 @@ export default class LandingPage extends Component {
             text='generate random room'
             onClick={this.handleStartProgrammingClick}
           />
-         
         </div>
       </div>
     )
