@@ -5,6 +5,10 @@ const slingSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   text: {
     type: String,
     required: false,
