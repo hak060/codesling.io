@@ -24,6 +24,14 @@ class Sling extends Component {
     this.socket.emit('client.run');
   }
 
+  sendTranscript = () => {
+    console.log('Transcript Button was pressed');
+    var codeinput = this.state.text || '';
+    var codeoutput = this.state.stdout || '';
+    console.log('this.state.text INPUT:', codeinput);    
+    console.log('this.state.stdout OUTPUT:', codeoutput);
+  }
+
  async componentDidMount() {
     const slingId = this.props.slingId;
     const { data } = await axios.get(`${process.env.REACT_APP_REST_SERVER_URL}/api/slings/${slingId}`);
@@ -105,6 +113,13 @@ class Sling extends Component {
           />
           <StdOut 
             text={this.state.stdout}
+          />
+          <Button
+            className="run-btn"
+            text="Send Transcript"
+            backgroundColor="red"
+            color="black"
+            onClick={this.sendTranscript}
           />
         </div>
       </div>
