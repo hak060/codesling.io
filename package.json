@@ -36,6 +36,7 @@
     "dotenv": "^4.0.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
+    "mail": "^0.2.3",
     "node-sass-chokidar": "0.0.3",
     "react-bootstrap": "^0.31.5"
   }
