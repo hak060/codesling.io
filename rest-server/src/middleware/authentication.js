@@ -15,7 +15,7 @@ export const generateToken = ({ username, id }) => {
 };
 
 export const verifyUserWithJWT = (req, res, next) => {
-  console.log('authentication request ', req.headers.authorization.slice(7))
+  console.log('authentication request ', req.body)
   try {
     jwt.verify(req.headers.authorization.slice(7), process.env.TOKEN_SECRET);
     log('token verified');
