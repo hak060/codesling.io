@@ -24,6 +24,10 @@ class Sling extends Component {
     this.socket.emit('client.run');
   }
 
+  // sendEmail = () => {
+  //   console.log(this.state.text);
+  // }
+
  async componentDidMount() {
     const slingId = this.props.slingId;
     const { data } = await axios.get(`${process.env.REACT_APP_REST_SERVER_URL}/api/slings/${slingId}`);
