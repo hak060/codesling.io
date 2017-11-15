@@ -24,7 +24,13 @@ class Sling extends Component {
     this.socket.emit('client.run');
   }
 
-
+  sendTranscript = () => {
+    console.log('Transcript Button was pressed');
+    var codeinput = this.state.text || '';
+    var codeoutput = this.state.stdout || '';
+    console.log('this.state.text INPUT:', codeinput);    
+    console.log('this.state.stdout OUTPUT:', codeoutput);
+  }
 
  async componentDidMount() {
     const slingId = this.props.slingId;
