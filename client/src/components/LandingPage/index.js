@@ -42,9 +42,10 @@ export default class LandingPage extends Component {
 
     axios({ method: 'POST', url: url, headers: headers, data: data })
       .then(response => {
-        //console.log('this is fetchSlingId data: ===', response.data);
+        console.log('this is fetchSlingId data: ===', response.data);
 
         const { slingId, password } = response.data;
+        console.log('this is fetchSlingId data: ===', password);
         this.props.history.push({
           pathname: `/${slingId}`,
         });

@@ -12,6 +12,8 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/base16-dark.css';
 import './Sling.css';
 
+import axios from 'axios';
+
 class Sling extends Component {
   state = {
     text: '',
@@ -22,10 +24,13 @@ class Sling extends Component {
     this.socket.emit('client.run');
   }
 
-  componentDidMount() {
+ async componentDidMount() {
+    const slingId = this.props.slingId;
+    const { data } = await axios.get(`${process.env.REACT_APP_REST_SERVER_URL}/api/slings/${slingId}`);
     this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL, {
       query: {
-        roomId: this.props.slingId,
+        roomId: slingId,
+        password: data.sling.password
       }
     });
 

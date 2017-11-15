@@ -41,73 +41,43 @@ export const forceNewSlingId = async (req, res) => {
   let roomExists = false;
   console.log(req.body.roomId + ' forceNewSlingId invoked!!!!!!!!!!!');
   console.log(req.body.isPassword + ' this is the password status')
-  if(req.body.isPassword === true){
-    console.log('happy password')
-    console.log('password ', req.body.password)
+  console.log('password ', req.body.password)
 
-    try {
-      
-          let slingId = req.body.roomId;
-          // regenerate slingId if it already exists
-          while (await existsInDatabase(slingId)) {
-            slingId = generateSlingId();
-            roomExists = true;
-          }
-          // save sling in db
-          const newSling = new Sling({ slingId });
-          console.log('this is the new sling ',newSling)
-          console.log()
-          await newSling.save();
-          log('sling successfully created');
-          return res.status(200).json({
-            success: true,
-            slingId,
-            roomExists,
-          });
-        } catch (e) {
-          log('error fetching newSlingId', e);
-          return res.status(400).json({
-            success: false,
-            e,
-          });
-        }
-
-
-
-  } else {
-    try {
-      
-          let slingId = req.body.roomId;
-          // regenerate slingId if it already exists
-          while (await existsInDatabase(slingId)) {
-            slingId = generateSlingId();
-            roomExists = true;
-          }
-          // save sling in db
-          const newSling = new Sling({ slingId });
-          console.log()
-          await newSling.save();
-          log('sling successfully created');
-          return res.status(200).json({
-            success: true,
-            slingId,
-            roomExists,
-          });
-        } catch (e) {
-          log('error fetching newSlingId', e);
-          return res.status(400).json({
-            success: false,
-            e,
-          });
-        }
+  try {
+    
+    let slingId = req.body.roomId;
+    let password = req.body.isPassword ? req.body.password : '';
+    // regenerate slingId if it already exists
+    while (await existsInDatabase(slingId)) {
+      slingId = generateSlingId();
+      roomExists = true;
+    }
+    // save sling in db
+    const newSling = new Sling({ slingId, password });
+    console.log('this is the new sling ',newSling)
+    console.log()
+    await newSling.save();
+    log('sling successfully created');
+    return res.status(200).json({
+      success: true,
+      slingId,
+      password,
+      roomExists,
+    });
+  } catch (e) {
+    log('error fetching newSlingId', e);
+    return res.status(400).json({
+      success: false,
+      e,
+    });
   }
-  
 };
 
 export const slingFetch = async (req, res) => {
   try {
     const sling = await Sling.findOne({ slingId: req.params.slingId });
     log('sling successfully fetched');
+    console.log('sling', sling);
     return res.status(200).json({
       success: true,
       sling,
@@ -123,7 +93,9 @@ export const slingFetch = async (req, res) => {
 
 export const slingPost = async (req, res) => {
   try {
-    const newSling = new Sling(req.body);
+    let password = '';
+    console.log('this is slingPost req.body ===',req.body);
+    const newSling = new Sling(req.body, '');
     await newSling.save();
     log('sling successfully created');
     return res.status(200).json({
