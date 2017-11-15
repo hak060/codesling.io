@@ -7,7 +7,7 @@ import Auth from '../Auth';
 import InvalidSlingError from '../Sling/InvalidSlingError';
 import Protected from '../globals/Protected';
 
-import './App.css';
+import './App.css'; 
 
 const App = () => {
   return (
