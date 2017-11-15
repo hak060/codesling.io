@@ -4,6 +4,9 @@
  *
  */
 export const serverInitialState = ({ client, room }) => {
+  console.log('this is the client id ',client.id)
+  console.log('this is the client ', client)
+  console.log('handshake???????? ', client.handshake.query)
   client.emit('server.initialState', {
     id: client.id,
     text: room.get('text'),

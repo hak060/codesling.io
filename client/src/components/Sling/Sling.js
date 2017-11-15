@@ -34,8 +34,15 @@ class Sling extends Component {
       }
     });
 
-    this.socket.on('connect', () => {
+      this.socket.on('connect', () => {
       this.socket.emit('client.ready');
+      
+      // console.log('data is tanananananananananan ', data)
+      let answer = prompt('type a password or leave blank if there is no password');
+      console.log(data.sling.password,  '    just to be sure')
+      if(data.sling.password !== answer){
+        this.socket.disconnect();
+      }
     });
 
     this.socket.on('server.initialState', ({ id, text }) => {
