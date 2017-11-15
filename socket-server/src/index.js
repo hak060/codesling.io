@@ -13,11 +13,12 @@ const rooms = new Rooms(io);
 io.on('connection', (client) => {
   log('client connected');
   const { roomId, password } = client.handshake.query;
-  console.log('*****************************');
-  console.log('client roomId', roomId)
-  console.log('client password', password)
-  console.log('*****************************');
-  console.log('client.handshake.query ', client.handshake.query)
+  
+  // console.log('*****************************');
+  // console.log('client roomId', roomId)
+  // console.log('client password', password)
+  // console.log('*****************************');
+  // console.log('client.handshake.query ', client.handshake.query)
   // console.log('is this the password? ', )
 
 

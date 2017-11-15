@@ -7,7 +7,7 @@ const slingSchema = mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: false,
   },
   text: {
     type: String,
