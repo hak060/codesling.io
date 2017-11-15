@@ -42,6 +42,7 @@ class Sling extends Component {
       console.log(data.sling.password,  '    just to be sure')
       if(data.sling.password !== answer){
         this.socket.disconnect();
+        window.location.reload();
       }
     });
 
