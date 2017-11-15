@@ -20,7 +20,8 @@ export const fetchNewSlingId = async (req, res) => {
       slingId = generateSlingId();
     }
     // save sling in db
-    const newSling = new Sling({ slingId });
+    let password = '';
+    const newSling = new Sling({ slingId, password });
     await newSling.save();
     log('sling successfully created');
     return res.status(200).json({
