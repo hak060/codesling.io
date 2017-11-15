@@ -14,25 +14,30 @@ export default class LandingPage extends Component {
     slingId: '',
     roomId: '',
   }
+//   var headers = {
+//     'Content-Type': 'application/json',
+//     'Authorization': 'JWT fefege...' 
+// }
+// axios.post(`${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`, data, headers)
 
+//     .then((response) => {
+//         dispatch({type: FOUND_USER, data: response.data[0]})
+//     })
+//     .catch((error) => {
+//         dispatch({type: ERROR_FINDING_USER})
+//     })
 
   forceSlingId = async () => {
-    try {
-      const { data } = await axios.post(`${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`,{
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-        roomId: this.state.roomId
-      });
-      console.log('this is fetchSlingId data: ===',data);
-      const { slingId } = data;
-      this.props.history.push({
-        pathname: `/${slingId}`,
-      });
-    } catch (e) {
-      debug('error retrieving slingId. e = ', e);
+    let headers = {
+      Authorization: `Bearer ${localStorage.token}`
     }
-    console.log('forced one invoked');
+    //let data = {roomId: this.state.roomId};
+    //console.log(" this is the data in client landing ",data)
+    let that = this;
+    //axios.post(`${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`, data, headers)
+
+    axios({ method: 'POST', url: `${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`, headers: {Authorization: `Bearer ${localStorage.token}`}, data: { roomId: that.state.roomId } })
+
   }
 
   fetchSlingId = async () => {

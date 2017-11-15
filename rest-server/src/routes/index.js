@@ -12,6 +12,7 @@ import {
   slingUpdate,
   slingDelete,
   fetchNewSlingId,
+  forceNewSlingId,
 } from '../controllers/slingController';
 import {
   slingMsgFetch,
@@ -38,6 +39,9 @@ router.route('/slings/:slingId')
   .post(verifyUserWithJWT, slingPost)
   .put(slingUpdate)
   .delete(verifyUserWithJWT, slingDelete);
+
+router.route('/force-sling')
+  .post(verifyUserWithJWT, forceNewSlingId);
 
 router.route('/new-sling')
   .get(verifyUserWithJWT, fetchNewSlingId);
