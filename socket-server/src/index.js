@@ -12,7 +12,13 @@ const rooms = new Rooms(io);
 
 io.on('connection', (client) => {
   log('client connected');
+  client.handshake.query.pass = '';
   const { roomId } = client.handshake.query;
+
+  //console.log('client ', client)
+  console.log('client.handshake.query ', client.handshake.query)
+
+
   const room = rooms.findOrCreate(roomId || 'default');
   client.join(room.get('id'));
 

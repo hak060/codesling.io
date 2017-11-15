@@ -34,7 +34,7 @@ export default class LandingPage extends Component {
     let headers = {
       Authorization: `Bearer ${localStorage.token}`
     }
-    let data = {roomId: this.state.roomId};
+    let data = this.state;
     let url = `${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`;
     //console.log(" this is the data in client landing ",data)
     //let that = this;
