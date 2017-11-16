@@ -7,6 +7,7 @@ import {
   serverLeave,
   serverRun,
   serverMessage,
+  serverEmail
 } from './serverEvents';
 
 /**
@@ -56,12 +57,19 @@ const clientMessage = ({ io, room }, payload) => {
   serverMessage({ io, room }, payload);
 };
 
+const clientEmail = ({ io, room }, payload) => {
+  log('client Email heard');
+  //log('client Email heard. payload.text = ', payload.text);
+  serverEmail({ io, room }, payload);
+};
+
 const clientEmitters = {
   'client.ready': clientReady,
   'client.update': clientUpdate,
   'client.disconnect': clientDisconnect,
   'client.run': clientRun,
   'client.message': clientMessage,
+  'client.email': clientEmail
 };
 
 export default clientEmitters;

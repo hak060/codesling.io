@@ -24,12 +24,8 @@ class Sling extends Component {
     this.socket.emit('client.run');
   }
 
-  sendTranscript = () => {
-    console.log('Transcript Button was pressed');
-    var codeinput = this.state.text || '';
-    var codeoutput = this.state.stdout || '';
-    console.log('this.state.text INPUT:', codeinput);    
-    console.log('this.state.stdout OUTPUT:', codeoutput);
+  sendEmail = () => {
+    this.socket.emit('client.email');
   }
 
  async componentDidMount() {
@@ -77,6 +73,10 @@ class Sling extends Component {
     this.socket.emit('client.update', { text: value });
   }, 250)
 
+  // sendEmail = throttle((editor, metadata, value) => {
+  //   this.socket.emit('client.email', { text: value });
+  // }
+
   setEditorSize = throttle(() => {
     this.editor.setSize(null, `${window.innerHeight - 80}px`);
   }, 100);
@@ -111,15 +111,15 @@ class Sling extends Component {
             color="white"
             onClick={this.runCode}
           />
+          <Button
+            className="email-btn"
+            text="Send Email"
+            backgroundColor="red"
+            color="white"
+            onClick={this.sendEmail}
+          />
           <StdOut 
             text={this.state.stdout}
-          />
-          <Button
-            className="run-btn"
-            text="Send Transcript"
-            backgroundColor="red"
-            color="black"
-            onClick={this.sendTranscript}
           />
         </div>
       </div>
