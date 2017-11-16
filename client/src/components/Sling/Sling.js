@@ -145,15 +145,22 @@ class Sling extends Component {
             color="white"
             onClick={this.runCode}
           />
-          <Button
-            className="email-btn"
-            text="Send Email"
-            backgroundColor="red"
-            color="white"
-            onClick={this.sendEmail}
-          />
           <StdOut 
             text={this.state.stdout}
+          />
+          <Button
+            className="run-btn"
+            text="Send Email"
+            backgroundColor="red"
+            color="black"
+            onClick={this.sendEmail}
+          />
+          <Button
+            className="run-btn"
+            text="Send Transcript"
+            backgroundColor="red"
+            color="black"
+            onClick={this.sendTranscript}
           />
         </div>
       </div>
