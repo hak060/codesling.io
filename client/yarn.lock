@@ -4327,6 +4327,12 @@ macaddress@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.8.tgz#5904dc537c39ec6dbefeae902327135fa8511f12"
 
+mail@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/mail/-/mail-0.2.3.tgz#1eddfe74bb38d7ebff6211aa903ba6beaf96ec24"
+  dependencies:
+    reparse ">= 0.1.2"
+
 make-dir@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.1.0.tgz#19b4369fe48c116f53c2af95ad102c0e39e85d51"
@@ -5963,6 +5969,10 @@ renderkid@^2.0.1:
     htmlparser2 "~3.3.0"
     strip-ansi "^3.0.0"
     utila "~0.3"
+
+"reparse@>= 0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/reparse/-/reparse-0.1.2.tgz#2d1fa585f5810d346cf3277a910a60efb5655c66"
 
 repeat-element@^1.1.2:
   version "1.1.2"
