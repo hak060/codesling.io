@@ -10,11 +10,12 @@ const app = express();
 const port = 4990 || process.env.PORT;
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../../client/build')))
-app.use(cors({
-  allowedHeaders: 'Content-Type,Authorization',
-  methods: ['GET, POST, PUT, DELETE, OPTIONS'],
-}));
+app.use(parser.urlencoded({ extended: true }));
+app.use(express.static(path.resolve(__dirname, '../../client/build')))
+// app.use(cors({
+//   allowedHeaders: 'Content-Type,Authorization',
+//   methods: ['GET, POST, PUT, DELETE, OPTIONS'],
+// }));
 
 app.use('/api', router);
 
