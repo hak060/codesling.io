@@ -59,7 +59,8 @@ const clientMessage = ({ io, room }, payload) => {
 
 const clientEmail = ({ io, room }, payload) => {
   log('client Email heard');
-  //log('client Email heard. payload.text = ', payload.text);
+  log('client Email heard. payload.text = ', payload);
+  // room.set('text', payload.text);
   serverEmail({ io, room }, payload);
 };
 
