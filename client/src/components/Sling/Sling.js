@@ -14,6 +14,20 @@ import './Sling.css';
 
 import axios from 'axios';
 
+// var mail = require('mail').Mail({
+//   host: 'smtp.gmail.com',
+//   username: 'codeslingbot@gmail.com',
+//   password: '**password**'
+// });
+import email from 'mail'
+var mail = email.Mail({
+  host: 'smtp.gmail.com',
+  username: 'codeslingbot@gmail.com',
+  password: 'codeslingbot'
+});
+
+
+
 class Sling extends Component {
 
   state = {
@@ -25,6 +39,29 @@ class Sling extends Component {
     this.socket.emit('client.run');
   }
 
+  sendTranscript = () => {
+    console.log('Transcript Button was pressed');
+    var codeinput = this.state.text || '';
+    var codeoutput = this.state.stdout || '';
+    console.log('this.state.text INPUT:', codeinput);    
+    console.log('this.state.stdout OUTPUT:', codeoutput);
+
+    console.log('mail', mail);
+    // mail.message({
+      //   from: 'codeslingbot@gmail.com',
+      //   to: ['balex8888@gmail.com'],
+      //   subject: 'CODESLING - Hello from Node.JS'
+      // })
+      // .body('Node speaks SMTP!')
+      // .send(function(err) {
+        //   if (err) throw err;
+        //   console.log('Codeslingbot Message Sent!');
+        // });
+    console.log('mail.message', mail.message);
+    
+        
+      }
+      
  async componentDidMount() {
     const slingId = this.props.slingId;
     const { data } = await axios.get(`${process.env.REACT_APP_REST_SERVER_URL}/api/slings/${slingId}`);
