@@ -15,6 +15,7 @@ import './Sling.css';
 import axios from 'axios';
 
 class Sling extends Component {
+
   state = {
     text: '',
     stdout: ''
@@ -22,10 +23,6 @@ class Sling extends Component {
 
   runCode = () => {
     this.socket.emit('client.run');
-  }
-
-  sendEmail = () => {
-    this.socket.emit('client.email');
   }
 
  async componentDidMount() {
@@ -73,9 +70,9 @@ class Sling extends Component {
     this.socket.emit('client.update', { text: value });
   }, 250)
 
-  // sendEmail = throttle((editor, metadata, value) => {
-  //   this.socket.emit('client.email', { text: value });
-  // }
+  sendEmail = throttle((editor, metadata, value) => {
+    this.socket.emit('client.email', { text: value });
+  }, 250)
 
   setEditorSize = throttle(() => {
     this.editor.setSize(null, `${window.innerHeight - 80}px`);
