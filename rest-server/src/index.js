@@ -11,11 +11,16 @@ const port = 4990 || process.env.PORT;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.resolve(__dirname, '../../client/build')))
 app.use(cors({
   allowedHeaders: 'Content-Type,Authorization',
   methods: ['GET, POST, PUT, DELETE, OPTIONS'],
 }));
+
+app.use(express.static(path.resolve(__dirname, '../../client/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../../client/build/index.html'));
+})
+
 
 app.use('/api', router);
 
