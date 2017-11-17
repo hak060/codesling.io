@@ -23,7 +23,7 @@ class Sling extends Component {
   runCode = () => {
     this.socket.emit('client.run');
   }
-
+      
  async componentDidMount() {
     const slingId = this.props.slingId;
     //console.log('process.env.REACT_APP_SOCKET_SERVER_URL ===== ',process.env.REACT_APP_SOCKET_SERVER_URL);
@@ -74,7 +74,6 @@ class Sling extends Component {
     var codeoutput = this.state.stdout || '';
     console.log('this.state.text INPUT:', codeinput);
     console.log('this.state.stdout OUTPUT:', codeoutput);
-
     
   }
 
