@@ -43,10 +43,13 @@ export const serverEmail = ({ io, room }, message) => {
   io
     .in(room.get('id'))
     .emit('server.message', message);
+    console.log('Button was clicked - socket server ROOM: ', room);
+    console.log('Button was clicked - socket server ROOM.text: ', room.get('text'));
 };
 
 export const sendFinalEmail = ({ io, room }, message) => {
   io
     .in(room.get('id'))
     //.emit('server.message', message);
+
 };

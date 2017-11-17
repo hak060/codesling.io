@@ -12,6 +12,7 @@
     "mail": "^0.2.3",
     "node-sass": "^4.6.0",
     "node-sass-chokidar": "^0.0.3",
+    "nodemailer": "^4.4.0",
     "npm-run-all": "^4.1.2",
     "react": "^16.1.0",
     "react-bootstrap": "^0.31.5",
