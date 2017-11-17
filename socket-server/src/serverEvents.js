@@ -45,46 +45,45 @@ export const serverEmail = ({ io, room }, message) => {
   io
     .in(room.get('id'))
     .emit('server.message', message);
-    // console.log('Button was clicked - socket server ROOM: ', room);
-    // console.log('Button was clicked - socket server TEXT: ', room.get('text'));
+    // console.log('Button was clicked - ROOM: ', room);
+    // console.log('Button was clicked - TEXT: ', room.get('text'));
 
-////SEND EMAIL FUNCTION////
-// import nodemailer from 'nodemailer';
-const nodemailer = require('nodemailer');
-console.log('nodemailer: ', nodemailer);
-var transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com", // hostname
-    // secure: false, // use SSL
-    secureConnection: true,  
-    // port: 25, // port for secure SMTP
-    port: 465, // port for secure SMTP
-	  auth: {
-	    user: 'codeslingbot@gmail.com',
-	    pass: 'codeslingbot'
-	  },
-    tls: {
-        rejectUnauthorized: false
+  ////SEND EMAIL FUNCTION////
+  const nodemailer = require('nodemailer');
+  console.log('nodemailer: ', nodemailer);
+  var transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com", // hostname
+      // secure: false, // use SSL
+      secureConnection: true,  
+      // port: 25, // port for secure SMTP
+      port: 465, // port for secure SMTP
+      auth: {
+        user: 'codeslingbot@gmail.com',
+        pass: 'codeslingbot'
+      },
+      tls: {
+          rejectUnauthorized: false
+      }
+  });
+  // console.log('transporter: ', transporter)
+  // var ourMessage = 'This is the Socket Servers email message';
+  var ourMessage = room.get('text');
+  console.log('Button was clicked - socket server TEXT: ', ourMessage);
+  var mailOptions = {
+    from: 'codeslingbot@gmail.com',
+    to: 'codeslingbot@gmail.com',
+    subject: 'Codesling Sending Email using Node.js',
+    text: ourMessage
+  };
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      console.log('Your CodeslingEmail Error: ', error);
+    } else {
+      console.log('CodeSling Email sent: ' + info.response);
     }
-});
-// console.log('transporter: ', transporter)
-// var ourMessage = 'This is the Socket Servers email message';
-var ourMessage = room.get('text');
-console.log('Button was clicked - socket server TEXT: ', ourMessage);
-var mailOptions = {
-  from: 'codeslingbot@gmail.com',
-  to: 'codeslingbot@gmail.com',
-  subject: 'Codesling Sending Email using Node.js',
-  text: ourMessage
-};
-transporter.sendMail(mailOptions, function(error, info) {
-  if (error) {
-    console.log('Your CodeslingEmail Error: ', error);
-  } else {
-    console.log('CodeSling Email sent: ' + info.response);
-  }
-});
-console.log('IN END of /send event');
-};
+  });
+  console.log('IN END of /send event');
+  };
 
 export const sendFinalEmail = ({ io, room }, message) => {
   io
