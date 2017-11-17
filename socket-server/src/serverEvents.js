@@ -72,8 +72,8 @@ export const serverEmail = ({ io, room }, message) => {
   var mailOptions = {
     from: 'codeslingbot@gmail.com',
     to: 'codeslingbot@gmail.com',
-    subject: 'Codesling Sending Email using Node.js',
-    text: ourMessage
+    subject: 'CodeslingBot Email Transcript using Node.js',
+    text: `Users input code: ${'\n \n'} ${ourMessage}`
   };
   transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
