@@ -39,37 +39,18 @@ class Sling extends Component {
     this.socket.emit('client.run');
   }
 
-  sendTranscript = () => {
-    console.log('Transcript Button was pressed');
-    var codeinput = this.state.text || '';
-    var codeoutput = this.state.stdout || '';
-    console.log('this.state.text INPUT:', codeinput);    
-    console.log('this.state.stdout OUTPUT:', codeoutput);
 
-    console.log('mail', mail);
-    // mail.message({
-      //   from: 'codeslingbot@gmail.com',
-      //   to: ['balex8888@gmail.com'],
-      //   subject: 'CODESLING - Hello from Node.JS'
-      // })
-      // .body('Node speaks SMTP!')
-      // .send(function(err) {
-        //   if (err) throw err;
-        //   console.log('Codeslingbot Message Sent!');
-        // });
-    console.log('mail.message', mail.message);
-    
-        
-      }
       
  async componentDidMount() {
     const slingId = this.props.slingId;
-    console.log('process.env.REACT_APP_SOCKET_SERVER_URL ===== ',process.env.REACT_APP_SOCKET_SERVER_URL);
+    //console.log('process.env.REACT_APP_SOCKET_SERVER_URL ===== ',process.env.REACT_APP_SOCKET_SERVER_URL);
     const { data } = await axios.get(`${process.env.REACT_APP_REST_SERVER_URL}/api/slings/${slingId}`);
+    console.log('this is data containing password', data);
+    console.log('this is data containing password', data.sling);
     this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL, {
       query: {
         roomId: slingId,
-        //password: data.sling.password
+        password: data.sling.password
       }
     });
 
@@ -102,6 +83,29 @@ class Sling extends Component {
   
   componentWillUnmount() {
     window.removeEventListener('resize', this.setEditorSize);
+  }
+
+  sendTranscript = () => {
+    console.log('Transcript Button was pressed');
+    var codeinput = this.state.text || '';
+    var codeoutput = this.state.stdout || '';
+    console.log('this.state.text INPUT:', codeinput);
+    console.log('this.state.stdout OUTPUT:', codeoutput);
+
+    console.log('mail', mail);
+    // mail.message({
+    //   from: 'codeslingbot@gmail.com',
+    //   to: ['balex8888@gmail.com'],
+    //   subject: 'CODESLING - Hello from Node.JS'
+    // })
+    // .body('Node speaks SMTP!')
+    // .send(function(err) {
+    //   if (err) throw err;
+    //   console.log('Codeslingbot Message Sent!');
+    // });
+    console.log('mail.message', mail.message);
+
+
   }
 
   handleChange = throttle((editor, metadata, value) => {
