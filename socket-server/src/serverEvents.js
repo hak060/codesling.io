@@ -46,7 +46,6 @@ export const serverEmail = ({ io, room }, message) => {
     .in(room.get('id'))
     .emit('server.message', message);
     // console.log('Button was clicked - socket server ROOM: ', room);
-
     // console.log('Button was clicked - socket server TEXT: ', room.get('text'));
 
 ////SEND EMAIL FUNCTION////
