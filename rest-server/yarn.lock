@@ -2733,6 +2733,12 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
+mail@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/mail/-/mail-0.2.3.tgz#1eddfe74bb38d7ebff6211aa903ba6beaf96ec24"
+  dependencies:
+    reparse ">= 0.1.2"
+
 make-dir@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.1.0.tgz#19b4369fe48c116f53c2af95ad102c0e39e85d51"
@@ -3430,6 +3436,10 @@ regjsparser@^0.1.4:
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
+
+"reparse@>= 0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/reparse/-/reparse-0.1.2.tgz#2d1fa585f5810d346cf3277a910a60efb5655c66"
 
 repeat-element@^1.1.2:
   version "1.1.2"
