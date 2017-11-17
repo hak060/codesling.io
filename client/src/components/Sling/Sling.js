@@ -64,18 +64,19 @@ class Sling extends Component {
       
  async componentDidMount() {
     const slingId = this.props.slingId;
+    console.log('process.env.REACT_APP_SOCKET_SERVER_URL ===== ',process.env.REACT_APP_SOCKET_SERVER_URL);
     const { data } = await axios.get(`${process.env.REACT_APP_REST_SERVER_URL}/api/slings/${slingId}`);
     this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL, {
       query: {
         roomId: slingId,
-        password: data.sling.password
+        //password: data.sling.password
       }
     });
 
       this.socket.on('connect', () => {
       this.socket.emit('client.ready');
-      
-      // console.log('data is tanananananananananan ', data)
+      console.log('process.env.REACT_APP_SOCKET_SERVER_URL ===== ',process.env.REACT_APP_SOCKET_SERVER_URL);
+       console.log('data is tanananananananananan ', data)
       let answer = prompt('type a password or leave blank if there is no password');
       console.log(data.sling.password,  '    just to be sure')
       if(data.sling.password !== answer){
