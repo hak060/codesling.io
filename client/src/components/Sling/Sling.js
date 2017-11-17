@@ -14,22 +14,7 @@ import './Sling.css';
 
 import axios from 'axios';
 
-// var mail = require('mail').Mail({
-//   host: 'smtp.gmail.com',
-//   username: 'codeslingbot@gmail.com',
-//   password: '**password**'
-// });
-import email from 'mail'
-var mail = email.Mail({
-  host: 'smtp.gmail.com',
-  username: 'codeslingbot@gmail.com',
-  password: 'codeslingbot'
-});
-
-
-
 class Sling extends Component {
-
   state = {
     text: '',
     stdout: ''
@@ -38,8 +23,6 @@ class Sling extends Component {
   runCode = () => {
     this.socket.emit('client.run');
   }
-
-
       
  async componentDidMount() {
     const slingId = this.props.slingId;
@@ -91,21 +74,7 @@ class Sling extends Component {
     var codeoutput = this.state.stdout || '';
     console.log('this.state.text INPUT:', codeinput);
     console.log('this.state.stdout OUTPUT:', codeoutput);
-
-    console.log('mail', mail);
-    // mail.message({
-    //   from: 'codeslingbot@gmail.com',
-    //   to: ['balex8888@gmail.com'],
-    //   subject: 'CODESLING - Hello from Node.JS'
-    // })
-    // .body('Node speaks SMTP!')
-    // .send(function(err) {
-    //   if (err) throw err;
-    //   console.log('Codeslingbot Message Sent!');
-    // });
-    console.log('mail.message', mail.message);
-
-
+    
   }
 
   handleChange = throttle((editor, metadata, value) => {

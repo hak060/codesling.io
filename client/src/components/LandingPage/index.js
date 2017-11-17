@@ -105,6 +105,13 @@ export default class LandingPage extends Component {
           /></div>
         <div id="roomnumber"><label> RoomNumber: <input type="text" name="roomId" value={this.state.roomId} onChange={this.handleChange} /></label></div>
         <div>
+          <Checkbox onChange={this.handleCheckboxChange}>
+            Create Password
+          </Checkbox>
+          {this.state.isPassword ? 
+            <div id="password"><label> Password: <input type="text" name="password" value={this.state.password} onChange={this.handleChange} /></label></div>
+           : null}
+          <br></br>
           <Button
             className="auth-btn-container"
             backgroundColor="red"
@@ -113,13 +120,6 @@ export default class LandingPage extends Component {
             text='enter selected room'
             onClick={this.handleStartPrivateProgrammingClick}
           />
-
-          <Checkbox onChange={this.handleCheckboxChange}>
-            Create Password
-          </Checkbox>
-          {this.state.isPassword ? 
-            <div id="password"><label> Password: <input type="text" name="password" value={this.state.password} onChange={this.handleChange} /></label></div>
-           : null}
           <br></br>
           <Button
             className="auth-btn-container"
