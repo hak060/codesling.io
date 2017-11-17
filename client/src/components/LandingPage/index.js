@@ -36,16 +36,17 @@ export default class LandingPage extends Component {
     }
     let data = this.state;
     let url = `${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`;
-    //console.log(" this is the data in client landing ",data)
+    console.log(" this is the data in client landing ", this.state)
     //let that = this;
     //axios.post(`${process.env.REACT_APP_REST_SERVER_URL}/api/force-sling`, data, headers)
 
-    axios({ method: 'POST', url: url, headers: headers, data: data })
+    axios({ method: 'POST', url: url, headers: headers, data: this.state })
       .then(response => {
-        console.log('this is fetchSlingId data: ===', response.data);
+        console.log('this is forcedSlingId data: ===', response);
+        console.log('this is forcedSlingId response.data: ===', response.data);
 
         const { slingId, password } = response.data;
-        console.log('this is fetchSlingId data: ===', password);
+        console.log('this is forcedSlingId data: ===', password);
         this.props.history.push({
           pathname: `/${slingId}`,
         });
