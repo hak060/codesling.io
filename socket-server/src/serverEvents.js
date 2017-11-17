@@ -46,7 +46,8 @@ export const serverEmail = ({ io, room }, message) => {
     .in(room.get('id'))
     .emit('server.message', message);
     // console.log('Button was clicked - socket server ROOM: ', room);
-    console.log('Button was clicked - socket server TEXT: ', room.get('text'));
+
+    // console.log('Button was clicked - socket server TEXT: ', room.get('text'));
 
 ////SEND EMAIL FUNCTION////
 // import nodemailer from 'nodemailer';
@@ -67,10 +68,12 @@ var transporter = nodemailer.createTransport({
     }
 });
 // console.log('transporter: ', transporter)
-var ourMessage = 'This is the Socket Servers email message';
+// var ourMessage = 'This is the Socket Servers email message';
+var ourMessage = room.get('text');
+console.log('Button was clicked - socket server TEXT: ', ourMessage);
 var mailOptions = {
   from: 'codeslingbot@gmail.com',
-  to: 'codesling@gmail.com',
+  to: 'codeslingbot@gmail.com',
   subject: 'Codesling Sending Email using Node.js',
   text: ourMessage
 };
