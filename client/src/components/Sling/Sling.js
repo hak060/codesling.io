@@ -17,7 +17,8 @@ import axios from 'axios';
 class Sling extends Component {
   state = {
     text: '',
-    stdout: ''
+    stdout: '',
+    brandenBar: false
   }
 
   runCode = () => {
@@ -28,8 +29,8 @@ class Sling extends Component {
     const slingId = this.props.slingId;
     //console.log('process.env.REACT_APP_SOCKET_SERVER_URL ===== ',process.env.REACT_APP_SOCKET_SERVER_URL);
     const { data } = await axios.get(`${process.env.REACT_APP_REST_SERVER_URL}/api/slings/${slingId}`);
-    console.log('this is data containing password', data);
-    console.log('this is data containing password', data.sling);
+    // console.log('this is data containing password', data);
+    // console.log('this is data containing password', data.sling);
     this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL, {
       query: {
         roomId: slingId,
@@ -39,13 +40,13 @@ class Sling extends Component {
 
       this.socket.on('connect', () => {
       this.socket.emit('client.ready');
-      console.log('process.env.REACT_APP_SOCKET_SERVER_URL ===== ',process.env.REACT_APP_SOCKET_SERVER_URL);
-       console.log('data is tanananananananananan ', data)
+      // console.log('process.env.REACT_APP_SOCKET_SERVER_URL ===== ',process.env.REACT_APP_SOCKET_SERVER_URL);
+      //  console.log('data is tanananananananananan ', data)
       let answer = prompt('type a password or leave blank if there is no password');
-      console.log(data.sling.password,  '    just to be sure')
+      // console.log(data.sling.password,  '    just to be sure')
       if(data.sling.password !== answer){
         this.socket.disconnect();
-        window.location.reload();
+        this.showBrandenBar();
       }
     });
 
@@ -68,12 +69,20 @@ class Sling extends Component {
     window.removeEventListener('resize', this.setEditorSize);
   }
 
+  showBrandenBar = async () => {
+    let wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+    this.setState({ brandenBar: true });
+    await wait(5000);
+    await this.setState({ brandenBar: false });
+    await window.location.reload();
+  }
+
   sendTranscript = () => {
-    console.log('Transcript Button was pressed');
+    // console.log('Transcript Button was pressed');
     var codeinput = this.state.text || '';
     var codeoutput = this.state.stdout || '';
-    console.log('this.state.text INPUT:', codeinput);
-    console.log('this.state.stdout OUTPUT:', codeoutput);
+    // console.log('this.state.text INPUT:', codeinput);
+    // console.log('this.state.stdout OUTPUT:', codeoutput);
     
   }
 
@@ -112,6 +121,9 @@ class Sling extends Component {
           />
         </div>
         <div className="stdout-container">
+          {this.state.brandenBar ? <div className="ticket-results">
+            <img src='https://cdn.discordapp.com/attachments/380047428050747393/381164687795945473/brendan.gif' />
+            </div> : null}
           <Button
             className="run-btn"
             text="Run Code"
