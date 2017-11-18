@@ -33,6 +33,8 @@ export const createUser = async (req, res) => {
       log('User already exists');
       return res.status(204).send('User already exists');
     }
+    console.log('create user.req', req.body);
+    //{ username: 'asdf', password: 'asdf' }
     const password = await hashPassword(req.body.password);
     const newUser = new User(Object.assign(req.body, { password }));
     await newUser.save();

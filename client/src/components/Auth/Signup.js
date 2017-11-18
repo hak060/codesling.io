@@ -10,7 +10,8 @@ import './Auth.css';
 class Signup extends Component {
   state = {
     username: '',
-    password: ''
+    password: '',
+    email: ''
   }
 
   handleChange = (event) => {
@@ -23,10 +24,12 @@ class Signup extends Component {
     const { 
       username,
       password,
+      email
     } = this.state;
     const { data } = await axios.post(`${process.env.REACT_APP_REST_SERVER_URL}/api/users`, {
       username,
-      password
+      password,
+      email
     });
     const { accessToken } = data;
     localStorage.setItem('token', accessToken);
@@ -53,6 +56,12 @@ class Signup extends Component {
             type="text"
             name="username"
             placeholder="username"
+            onChange={this.handleChange}
+          />
+          <Input
+            type="email"
+            name="email"
+            placeholder="email"
             onChange={this.handleChange}
           />
           <Input
