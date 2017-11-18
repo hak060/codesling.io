@@ -122,6 +122,7 @@ class Sling extends Component {
         </div>
         <div className="stdout-container">
           {this.state.brandenBar ? <div className="ticket-results">
+            <div><h1>Brendan bot: You Messed Up Real Bad!!!</h1></div>
             <img src='https://cdn.discordapp.com/attachments/380047428050747393/381164687795945473/brendan.gif' />
             </div> : null}
           <Button
