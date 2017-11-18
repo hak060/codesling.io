@@ -3,14 +3,14 @@ import jwt from 'jsonwebtoken';
 import log from '../lib/log';
 
 export const generateToken = ({ username, id }) => {
+  
   const token = {};
 
   token.accessToken = jwt.sign({
     exp: Math.floor(Date.now() / 1000) + (60 * 60),
     username,
-    id,
+    id
   }, process.env.TOKEN_SECRET);
-
   return token;
 };
 

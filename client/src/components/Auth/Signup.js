@@ -32,7 +32,9 @@ class Signup extends Component {
       email
     });
     const { accessToken } = data;
+    console.log('in signup, accessToken', accessToken);
     localStorage.setItem('token', accessToken);
+    localStorage.setItem('username', this.state.username);
     this.props.history.push('/');
   }
 

@@ -11,11 +11,11 @@ mongoose.Promise = bluebird;
 export const authUser = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
+    log('User authenticated, user from db', user);
     const authenticated = await comparePasswords(req.body.password, user.password);
     if (authenticated) {
       const token = generateToken(user);
-      log('User authenticated');
-      res.status(200).send(token);
+      res.status(200).send({token: token, user: user});
     } else {
       log('User is not authenticated');
       res.status(204).send('User not authenticated');
@@ -33,14 +33,16 @@ export const createUser = async (req, res) => {
       log('User already exists');
       return res.status(204).send('User already exists');
     }
-    console.log('create user.req', req.body);
-    //{ username: 'asdf', password: 'asdf' }
+
     const password = await hashPassword(req.body.password);
     const newUser = new User(Object.assign(req.body, { password }));
     await newUser.save();
     log('User successfully created');
 
     const token = generateToken(req.body);
+    console.log('token ==== ', token)
+    console.log('create user.req', req.body);
+    //{ username: 'asdf', password: 'asdf' }
     return res.status(200).send(token);
   } catch (error) {
     log('Error in createUser ', error);

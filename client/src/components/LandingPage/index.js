@@ -103,6 +103,8 @@ export default class LandingPage extends Component {
           <Logo
             className="landing-page-logo"
           /></div>
+        <div><h2>Current User: {''}</h2></div>
+
         <div id="roomnumber"><label> RoomNumber: <input type="text" name="roomId" value={this.state.roomId} onChange={this.handleChange} /></label></div>
         <div>
           <Checkbox onChange={this.handleCheckboxChange}>
@@ -117,7 +119,7 @@ export default class LandingPage extends Component {
             backgroundColor="red"
             color="white"
             loading={this.state.loading}
-            text='enter selected room'
+            text='Generate Private Room'
             onClick={this.handleStartPrivateProgrammingClick}
           />
           <br></br>
@@ -126,7 +128,7 @@ export default class LandingPage extends Component {
             backgroundColor="red"
             color="white"
             loading={this.state.loading}
-            text='generate random room'
+            text='Generate Random Room'
             onClick={this.handleStartProgrammingClick}
           />
         </div>

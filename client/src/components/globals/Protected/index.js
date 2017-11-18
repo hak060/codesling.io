@@ -7,7 +7,11 @@ class Protected extends Component {
   componentDidMount() {
     try {
       const { exp } = jwtDecode(localStorage.token);
-      if (exp < Math.floor(Date.now() / 1000)) {
+      let cutoff = Math.floor(Date.now() / 1000);
+      let timeleft = exp - cutoff;
+      console.log('timeleft ======= ', timeleft);
+      if (timeleft < 0) {
+        localStorage.removeItem('username');
         this.props.history.push('/auth/login');
       }
     } catch (e) {
