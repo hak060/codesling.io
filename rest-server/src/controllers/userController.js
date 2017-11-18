@@ -14,8 +14,10 @@ export const authUser = async (req, res) => {
     log('User authenticated, user from db', user);
     const authenticated = await comparePasswords(req.body.password, user.password);
     if (authenticated) {
-      const token = generateToken(user);
-      res.status(200).send({token: token, user: user});
+      let token = generateToken(user);
+      token.username = user.username;
+      token.email = user.email;
+      res.status(200).send(token);
     } else {
       log('User is not authenticated');
       res.status(204).send('User not authenticated');

@@ -35,6 +35,7 @@ class Signup extends Component {
     console.log('in signup, accessToken', accessToken);
     localStorage.setItem('token', accessToken);
     localStorage.setItem('username', this.state.username);
+    localStorage.setItem('email', this.state.email);
     this.props.history.push('/');
   }
 

@@ -45,8 +45,8 @@ export const serverEmail = ({ io, room }, message) => {
   io
     .in(room.get('id'))
     .emit('server.message', message);
-    // console.log('Button was clicked - ROOM: ', room);
-    // console.log('Button was clicked - TEXT: ', room.get('text'));
+    console.log('Button was clicked - ROOM: ', room);
+    console.log('Button was clicked - TEXT: ', room.get('text'));
 
   ////SEND EMAIL FUNCTION////
   const nodemailer = require('nodemailer');

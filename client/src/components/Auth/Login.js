@@ -24,16 +24,19 @@ class Login extends Component {
       username,
       password,
     } = this.state;
-    const { data } = await axios.post(`${process.env.REACT_APP_REST_SERVER_URL}/api/users/auth`, {
+    let { data } = await axios.post(`${process.env.REACT_APP_REST_SERVER_URL}/api/users/auth`, {
       username,
       password
     });
     console.log('user', data)
-    const { accessToken, user } = data;
-    console.log('user', user)
+    const { accessToken, email } = data;
+    console.log('email', email)
+    console.log('props', this.props)
     console.log('in login, accessToken', accessToken);
     localStorage.setItem('token', accessToken);
-    localStorage.setItem('username', this.state.username);
+    //localStorage.setItem('username', username);
+    localStorage.setItem('username', username);
+    localStorage.setItem('email', JSON.stringify(email));
     this.props.history.push('/');
   }
 

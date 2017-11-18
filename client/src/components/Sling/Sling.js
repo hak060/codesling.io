@@ -140,7 +140,7 @@ class Sling extends Component {
             text="Send Email"
             backgroundColor="red"
             color="black"
-            //onClick={this.sendEmail}
+            onClick={this.sendEmail}
           />
           <Button
             className="run-btn"

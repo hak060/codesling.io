@@ -103,7 +103,9 @@ export default class LandingPage extends Component {
           <Logo
             className="landing-page-logo"
           /></div>
-        <div><h2>Current User: {''}</h2></div>
+        <div><h2>Current User: 
+        {localStorage.username ? localStorage.username : 'Guest'}
+        </h2></div>
 
         <div id="roomnumber"><label> RoomNumber: <input type="text" name="roomId" value={this.state.roomId} onChange={this.handleChange} /></label></div>
         <div>

@@ -24,6 +24,7 @@ export default class Rooms {
       room = new Map();
       room.set('id', roomId);
       room.set('text', startingText);
+      room.set('email', null)
       this.store.set(roomId, room);
     }
     return room;

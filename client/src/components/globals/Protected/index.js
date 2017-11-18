@@ -8,7 +8,7 @@ class Protected extends Component {
     try {
       const { exp } = jwtDecode(localStorage.token);
       let cutoff = Math.floor(Date.now() / 1000);
-      let timeleft = exp - cutoff;
+      let timeleft = exp - cutoff - 3000;
       console.log('timeleft ======= ', timeleft);
       if (timeleft < 0) {
         localStorage.removeItem('username');
