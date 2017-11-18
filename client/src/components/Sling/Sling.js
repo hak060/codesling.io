@@ -72,7 +72,7 @@ class Sling extends Component {
   showBrandenBar = async () => {
     let wait = ms => new Promise(resolve => setTimeout(resolve, ms));
     this.setState({ brandenBar: true });
-    await wait(5000);
+    await wait(3000);
     await this.setState({ brandenBar: false });
     await window.location.reload();
   }
